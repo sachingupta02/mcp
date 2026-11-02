@@ -8,7 +8,7 @@
 	// first, since the main Worker binds to it.
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "cloudflare-api-mcp-forge-tools-dev",
-	"account_id": "6702657b6aa048cf3081ff3ff3c9c52f",
+	"account_id": "716a7bbe6f8e024b864ac3ccbb4832f7",
 	"main": "src/forge-tools/worker.ts",
 	"compatibility_date": "2026-06-17",
 	"workers_dev": false,
