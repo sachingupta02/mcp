@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "cloudflare-api-mcp-dev",
+	"name": "mcp",
 	"account_id": "716a7bbe6f8e024b864ac3ccbb4832f7",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-06-17",
@@ -9,31 +9,23 @@
 		"global_fetch_strictly_public"
 	],
 	"observability": {
-		"issues": {
-			"enabled": true
-		},
-		"logs": {
-			"enabled": true
-		},
-		"traces": {
-			"enabled": true
-		}
+		"issues": { "enabled": true },
+		"logs": { "enabled": true },
+		"traces": { "enabled": true }
 	},
 	"vars": {
 		"CLOUDFLARE_API_BASE": "https://api.cloudflare.com/client/v4",
 		"CLOUDFLARE_OAUTH_DOMAIN": "https://dash.cloudflare.com",
-		"MCP_RESOURCE": "http://localhost:2529/mcp",
+		"MCP_RESOURCE": "https://mcp.YOUR-SUBDOMAIN.workers.dev/mcp",
 		"RESPONSE_VALIDATION_SAMPLE_RATE": "1"
 	},
 	"worker_loaders": [
-		{
-			"binding": "LOADER"
-		}
+		{ "binding": "LOADER" }
 	],
 	"services": [
 		{
 			"binding": "GLOBAL_OUTBOUND",
-			"service": "cloudflare-api-mcp-dev",
+			"service": "mcp",
 			"entrypoint": "GlobalOutbound"
 		},
 		{
@@ -44,6 +36,7 @@
 	"kv_namespaces": [
 		{
 			"binding": "OAUTH_KV",
+			"id": "4bcbba57df4f4d4d8f05dfac2853dbf0"
 		}
 	],
 	"r2_buckets": [
@@ -63,117 +56,5 @@
 	},
 	"dev": {
 		"port": 2529
-	},
-	"env": {
-		"staging": {
-			"name": "cloudflare-api-mcp-staging",
-			"ai": {
-				"binding": "AI"
-			},
-			"routes": [
-				{
-					"pattern": "staging.mcp.cloudflare.com",
-					"custom_domain": true
-				}
-			],
-			"worker_loaders": [
-				{
-					"binding": "LOADER"
-				}
-			],
-			"services": [
-				{
-					"binding": "GLOBAL_OUTBOUND",
-					"service": "cloudflare-api-mcp-staging",
-					"entrypoint": "GlobalOutbound"
-				},
-				{
-					"binding": "FORGE_TOOLS",
-					"service": "cloudflare-api-mcp-forge-tools-staging"
-				}
-			],
-			"kv_namespaces": [
-				{
-					"binding": "OAUTH_KV",
-					"id":"4bcbba57df4f4d4d8f05dfac2853dbf0"
-				}
-			],
-			"r2_buckets": [
-				{
-					"binding": "SPEC_BUCKET",
-					"bucket_name": "mcp-spec-staging"
-				}
-			],
-			"analytics_engine_datasets": [
-				{
-					"binding": "MCP_METRICS",
-					"dataset": "mcp-metrics-staging"
-				}
-			],
-			"triggers": {
-				"crons": ["0 */6 * * *"]
-			},
-			"vars": {
-				"CLOUDFLARE_API_BASE": "https://api.staging.cloudflare.com/client/v4",
-				"CLOUDFLARE_OAUTH_DOMAIN": "https://dash.staging.cloudflare.com",
-				"MCP_RESOURCE": "https://staging.mcp.cloudflare.com/mcp",
-				"RESPONSE_VALIDATION_SAMPLE_RATE": "1"
-			}
-		},
-		"production": {
-			"name": "cloudflare-api-mcp",
-			"ai": {
-				"binding": "AI"
-			},
-			"routes": [
-				{
-					"pattern": "mcp.cloudflare.com",
-					"custom_domain": true
-				}
-			],
-			"worker_loaders": [
-				{
-					"binding": "LOADER"
-				}
-			],
-			"services": [
-				{
-					"binding": "GLOBAL_OUTBOUND",
-					"service": "cloudflare-api-mcp",
-					"entrypoint": "GlobalOutbound"
-				},
-				{
-					"binding": "FORGE_TOOLS",
-					"service": "cloudflare-api-mcp-forge-tools"
-				}
-			],
-			"kv_namespaces": [
-				{
-					"binding": "OAUTH_KV",
-					"id": "4bcbba57df4f4d4d8f05dfac2853dbf0"
-				}
-			],
-			"r2_buckets": [
-				{
-					"binding": "SPEC_BUCKET",
-					"bucket_name": "mcp-spec-production"
-				}
-			],
-			"analytics_engine_datasets": [
-				{
-					"binding": "MCP_METRICS",
-					"dataset": "mcp-metrics-production"
-				}
-			],
-			"triggers": {
-				"crons": ["0 */6 * * *"]
-			},
-			"vars": {
-				"CLOUDFLARE_API_BASE": "https://api.cloudflare.com/client/v4",
-				"CLOUDFLARE_OAUTH_DOMAIN": "https://dash.cloudflare.com",
-				"MCP_RESOURCE": "https://mcp.cloudflare.com/mcp",
-				"RESPONSE_VALIDATION_SAMPLE_RATE": "1"
-			}
-		}
 	}
 }
