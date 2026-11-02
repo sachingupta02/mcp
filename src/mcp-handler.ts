@@ -26,13 +26,15 @@ export const MCP_ROUTE = '/mcp'
 const ALLOWED_MCP_HOSTNAMES = [
   ...localhostAllowedHostnames(),
   'staging.mcp.cloudflare.com',
-  'mcp.cloudflare.com'
+  'mcp.cloudflare.com',
+    'mcp.nfr-in-softcell.workers.dev'
 ]
 
 const ALLOWED_MCP_ORIGIN_HOSTNAMES = [
   ...localhostAllowedOrigins(),
   'staging.mcp.cloudflare.com',
-  'mcp.cloudflare.com'
+  'mcp.cloudflare.com',
+    'mcp.nfr-in-softcell.workers.dev'
 ]
 
 /**
