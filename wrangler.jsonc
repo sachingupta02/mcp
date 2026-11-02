@@ -16,7 +16,7 @@
 	"vars": {
 		"CLOUDFLARE_API_BASE": "https://api.cloudflare.com/client/v4",
 		"CLOUDFLARE_OAUTH_DOMAIN": "https://dash.cloudflare.com",
-		"MCP_RESOURCE": "https://mcp.nfr-in-softcell.workers.dev/mcp",
+		"MCP_RESOURCE": "https://cloudflare-api-mcp-forge-tools-dev.nfr-in-softcell.workers.dev/mcp",
 		"RESPONSE_VALIDATION_SAMPLE_RATE": "1"
 	},
 	"worker_loaders": [
